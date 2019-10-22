@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
@@ -48,16 +49,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.rtbTest = new System.Windows.Forms.RichTextBox();
             this.btnImport = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.closeTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(176, 97);
+            this.label5.Location = new System.Drawing.Point(182, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 12);
             this.label5.TabIndex = 93;
@@ -65,14 +65,14 @@
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(240, 61);
+            this.txtPort.Location = new System.Drawing.Point(245, 61);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(57, 21);
             this.txtPort.TabIndex = 87;
             // 
             // txtIP
             // 
-            this.txtIP.Location = new System.Drawing.Point(204, 34);
+            this.txtIP.Location = new System.Drawing.Point(209, 34);
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(93, 21);
             this.txtIP.TabIndex = 86;
@@ -81,7 +81,7 @@
             // 
             this.ClearButton.Location = new System.Drawing.Point(18, 204);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(74, 23);
+            this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 91;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -107,18 +107,18 @@
             // 
             // txtHistory
             // 
-            this.txtHistory.Location = new System.Drawing.Point(178, 115);
+            this.txtHistory.Location = new System.Drawing.Point(182, 106);
             this.txtHistory.Name = "txtHistory";
-            this.txtHistory.Size = new System.Drawing.Size(122, 95);
+            this.txtHistory.Size = new System.Drawing.Size(120, 121);
             this.txtHistory.TabIndex = 88;
             this.txtHistory.Text = "";
             // 
             // btnConnect
             // 
             this.btnConnect.Font = new System.Drawing.Font("Gulim", 9F);
-            this.btnConnect.Location = new System.Drawing.Point(20, 171);
+            this.btnConnect.Location = new System.Drawing.Point(18, 171);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(72, 27);
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 85;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -173,11 +173,11 @@
             // 
             this.ClientName.AutoSize = true;
             this.ClientName.Font = new System.Drawing.Font("Gulim", 10F);
-            this.ClientName.Location = new System.Drawing.Point(12, 9);
+            this.ClientName.Location = new System.Drawing.Point(18, 9);
             this.ClientName.Name = "ClientName";
-            this.ClientName.Size = new System.Drawing.Size(99, 14);
+            this.ClientName.Size = new System.Drawing.Size(307, 14);
             this.ClientName.TabIndex = 78;
-            this.ClientName.Text = "<ClientName>";
+            this.ClientName.Text = "서버에서 보낼 때 4,5,6,7,8 이런 식으로 보낼것";
             // 
             // label4
             // 
@@ -203,7 +203,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Gulim", 9F);
-            this.label2.Location = new System.Drawing.Point(16, 64);
+            this.label2.Location = new System.Drawing.Point(18, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 12);
             this.label2.TabIndex = 75;
@@ -213,7 +213,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Gulim", 9F);
-            this.label1.Location = new System.Drawing.Point(13, 37);
+            this.label1.Location = new System.Drawing.Point(18, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 12);
             this.label1.TabIndex = 74;
@@ -225,44 +225,41 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 94;
-            this.btnStart.Text = "DataSave";
+            this.btnStart.Text = "LOGSAVE";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Load Data*.txt|(*.txt)";
-            // 
-            // rtbTest
-            // 
-            this.rtbTest.Location = new System.Drawing.Point(306, 34);
-            this.rtbTest.Name = "rtbTest";
-            this.rtbTest.Size = new System.Drawing.Size(154, 82);
-            this.rtbTest.TabIndex = 95;
-            this.rtbTest.Text = "";
-            // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(306, 122);
+            this.btnImport.Location = new System.Drawing.Point(96, 204);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 32);
+            this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 96;
-            this.btnImport.Text = "Import";
+            this.btnImport.Text = "LOGLOAD";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.button1_Click);
             // 
-            // folderBrowserDialog1
+            // closeTimer
             // 
-            this.folderBrowserDialog1.SelectedPath = "C:\\Users\\Unieye\\Desktop\\0909 Server";
+            this.closeTimer.Interval = 2000;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(308, 29);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 29);
+            this.button1.TabIndex = 97;
+            this.button1.Text = "DELETE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 236);
+            this.ClientSize = new System.Drawing.Size(434, 248);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImport);
-            this.Controls.Add(this.rtbTest);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPort);
@@ -314,10 +311,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.RichTextBox rtbTest;
         private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        public System.Windows.Forms.Timer closeTimer;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -15,6 +15,7 @@ namespace Client
             // SP_Speed = 10, PV_Speed = 12, PV_Postion = 14,
             // LotNo = 18, Model = 38, Worker = 58, Paste = 78,
             // RollDia = 98, RewinderCut = 102
+            
             bool isConnected = false;
             public bool IsConnected { get => isConnected; set => isConnected = value; }
 

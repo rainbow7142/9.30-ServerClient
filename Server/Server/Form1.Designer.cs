@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.txtPort = new System.Windows.Forms.RichTextBox();
             this.txtHistory = new System.Windows.Forms.RichTextBox();
@@ -50,21 +51,22 @@
             this.ColorSensor = new System.Windows.Forms.Button();
             this.Pinhole = new System.Windows.Forms.Button();
             this.StopImage = new System.Windows.Forms.Button();
-            this.Clearbutton = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnLog = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(186, 51);
+            this.txtAddress.Location = new System.Drawing.Point(199, 20);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(90, 23);
+            this.txtAddress.Size = new System.Drawing.Size(116, 23);
             this.txtAddress.TabIndex = 0;
             this.txtAddress.Text = "";
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(186, 91);
+            this.txtPort.Location = new System.Drawing.Point(199, 60);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(61, 24);
             this.txtPort.TabIndex = 1;
@@ -72,15 +74,15 @@
             // 
             // txtHistory
             // 
-            this.txtHistory.Location = new System.Drawing.Point(279, 51);
+            this.txtHistory.Location = new System.Drawing.Point(288, 64);
             this.txtHistory.Name = "txtHistory";
-            this.txtHistory.Size = new System.Drawing.Size(157, 150);
+            this.txtHistory.Size = new System.Drawing.Size(128, 137);
             this.txtHistory.TabIndex = 2;
             this.txtHistory.Text = "";
             // 
             // lotno
             // 
-            this.lotno.Location = new System.Drawing.Point(93, 6);
+            this.lotno.Location = new System.Drawing.Point(108, 1);
             this.lotno.Name = "lotno";
             this.lotno.Size = new System.Drawing.Size(85, 24);
             this.lotno.TabIndex = 3;
@@ -88,7 +90,7 @@
             // 
             // worker
             // 
-            this.worker.Location = new System.Drawing.Point(93, 36);
+            this.worker.Location = new System.Drawing.Point(108, 32);
             this.worker.Name = "worker";
             this.worker.Size = new System.Drawing.Size(85, 24);
             this.worker.TabIndex = 4;
@@ -96,7 +98,7 @@
             // 
             // modelname
             // 
-            this.modelname.Location = new System.Drawing.Point(93, 70);
+            this.modelname.Location = new System.Drawing.Point(108, 63);
             this.modelname.Name = "modelname";
             this.modelname.Size = new System.Drawing.Size(85, 24);
             this.modelname.TabIndex = 5;
@@ -104,7 +106,7 @@
             // 
             // paste
             // 
-            this.paste.Location = new System.Drawing.Point(93, 100);
+            this.paste.Location = new System.Drawing.Point(108, 94);
             this.paste.Name = "paste";
             this.paste.Size = new System.Drawing.Size(85, 24);
             this.paste.TabIndex = 6;
@@ -112,7 +114,7 @@
             // 
             // Speed
             // 
-            this.Speed.Location = new System.Drawing.Point(279, 5);
+            this.Speed.Location = new System.Drawing.Point(108, 125);
             this.Speed.Name = "Speed";
             this.Speed.Size = new System.Drawing.Size(84, 24);
             this.Speed.TabIndex = 7;
@@ -121,7 +123,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 9);
+            this.label1.Location = new System.Drawing.Point(79, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 12);
             this.label1.TabIndex = 8;
@@ -130,7 +132,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 39);
+            this.label2.Location = new System.Drawing.Point(58, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 12);
             this.label2.TabIndex = 9;
@@ -139,7 +141,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 73);
+            this.label3.Location = new System.Drawing.Point(27, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 12);
             this.label3.TabIndex = 10;
@@ -148,7 +150,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 103);
+            this.label4.Location = new System.Drawing.Point(64, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 12);
             this.label4.TabIndex = 11;
@@ -157,7 +159,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(184, 9);
+            this.label5.Location = new System.Drawing.Point(12, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 12);
             this.label5.TabIndex = 12;
@@ -166,7 +168,7 @@
             // numport
             // 
             this.numport.AutoSize = true;
-            this.numport.Location = new System.Drawing.Point(184, 74);
+            this.numport.Location = new System.Drawing.Point(199, 46);
             this.numport.Name = "numport";
             this.numport.Size = new System.Drawing.Size(27, 12);
             this.numport.TabIndex = 13;
@@ -174,9 +176,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(198, 159);
+            this.button1.Location = new System.Drawing.Point(341, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 52);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
             this.button1.Text = "OPEN";
             this.button1.UseVisualStyleBackColor = true;
@@ -184,9 +186,9 @@
             // 
             // SendButton
             // 
-            this.SendButton.Location = new System.Drawing.Point(198, 130);
+            this.SendButton.Location = new System.Drawing.Point(199, 160);
             this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(75, 23);
+            this.SendButton.Size = new System.Drawing.Size(75, 52);
             this.SendButton.TabIndex = 19;
             this.SendButton.Text = "Send";
             this.SendButton.UseVisualStyleBackColor = true;
@@ -195,7 +197,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(184, 34);
+            this.label6.Location = new System.Drawing.Point(199, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 12);
             this.label6.TabIndex = 24;
@@ -204,7 +206,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(277, 32);
+            this.label9.Location = new System.Drawing.Point(286, 49);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(26, 12);
             this.label9.TabIndex = 25;
@@ -212,7 +214,7 @@
             // 
             // EDMS
             // 
-            this.EDMS.Location = new System.Drawing.Point(36, 159);
+            this.EDMS.Location = new System.Drawing.Point(37, 160);
             this.EDMS.Name = "EDMS";
             this.EDMS.Size = new System.Drawing.Size(75, 23);
             this.EDMS.TabIndex = 26;
@@ -222,7 +224,7 @@
             // 
             // ColorSensor
             // 
-            this.ColorSensor.Location = new System.Drawing.Point(117, 159);
+            this.ColorSensor.Location = new System.Drawing.Point(118, 160);
             this.ColorSensor.Name = "ColorSensor";
             this.ColorSensor.Size = new System.Drawing.Size(75, 23);
             this.ColorSensor.TabIndex = 27;
@@ -232,7 +234,7 @@
             // 
             // Pinhole
             // 
-            this.Pinhole.Location = new System.Drawing.Point(36, 188);
+            this.Pinhole.Location = new System.Drawing.Point(37, 189);
             this.Pinhole.Name = "Pinhole";
             this.Pinhole.Size = new System.Drawing.Size(75, 23);
             this.Pinhole.TabIndex = 28;
@@ -242,7 +244,7 @@
             // 
             // StopImage
             // 
-            this.StopImage.Location = new System.Drawing.Point(117, 188);
+            this.StopImage.Location = new System.Drawing.Point(118, 189);
             this.StopImage.Name = "StopImage";
             this.StopImage.Size = new System.Drawing.Size(75, 23);
             this.StopImage.TabIndex = 29;
@@ -250,32 +252,37 @@
             this.StopImage.UseVisualStyleBackColor = true;
             this.StopImage.Click += new System.EventHandler(this.StopImage_Click);
             // 
-            // Clearbutton
+            // btnLog
             // 
-            this.Clearbutton.Location = new System.Drawing.Point(36, 130);
-            this.Clearbutton.Name = "Clearbutton";
-            this.Clearbutton.Size = new System.Drawing.Size(75, 23);
-            this.Clearbutton.TabIndex = 30;
-            this.Clearbutton.Text = "TextClear";
-            this.Clearbutton.UseVisualStyleBackColor = true;
-            this.Clearbutton.Click += new System.EventHandler(this.Clearbutton_Click);
+            this.btnLog.Location = new System.Drawing.Point(199, 92);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(75, 23);
+            this.btnLog.TabIndex = 32;
+            this.btnLog.Text = "Log";
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
-            // label7
+            // btnDelete
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(369, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 12);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "label7";
+            this.btnDelete.Location = new System.Drawing.Point(199, 128);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 33;
+            this.btnDelete.Text = "LogDelete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 2000;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 234);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.Clearbutton);
+            this.ClientSize = new System.Drawing.Size(438, 224);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnLog);
             this.Controls.Add(this.StopImage);
             this.Controls.Add(this.Pinhole);
             this.Controls.Add(this.ColorSensor);
@@ -326,12 +333,13 @@
         private System.Windows.Forms.Button SendButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button Clearbutton;
         public System.Windows.Forms.Button EDMS;
         public System.Windows.Forms.Button ColorSensor;
         public System.Windows.Forms.Button Pinhole;
         public System.Windows.Forms.Button StopImage;
         public System.Windows.Forms.RichTextBox txtPort;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnLog;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Timer timer1;
     }
 }

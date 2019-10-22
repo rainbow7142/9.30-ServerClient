@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
+using System.Threading;
+
 namespace Server
 {
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -22,11 +20,11 @@ namespace Server
                 new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
             textAppender = new AppendTextDelegate(AppendText);
         }
+
         delegate void AppendTextDelegate(Control ctrl, string s);
         AppendTextDelegate textAppender;
         Socket mainSock;
         IPAddress thisAddress;
-
 
         void AppendText(Control ctrl, string s)
         {
@@ -37,9 +35,8 @@ namespace Server
                 ctrl.Text = source + Environment.NewLine + s;
             }
         }
-        IPEndPoint serverEP = new IPEndPoint(IPAddress.Any, 2019);
+        
         List<Socket> connectedClients = new List<Socket>();
-
         void AcceptCallback(IAsyncResult ar)
         {
             try
@@ -49,12 +46,12 @@ namespace Server
                 AsyncObject obj = new AsyncObject(4096);
                 obj.WorkingSocket = client;
                 connectedClients.Add(client);
-                AppendText(txtHistory, string.Format("Connected: {0}", client.RemoteEndPoint));
+                AppendText(txtHistory, string.Format("{0}", client.RemoteEndPoint));
                 client.BeginReceive(obj.Buffer, 0, 4096, 0, DataReceived, obj);
             }
             catch (ObjectDisposedException ex)
             {
-                MessageBox.Show(ex.Message, "클라이언트 접속 끊김", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     
@@ -89,11 +86,13 @@ namespace Server
             catch (SocketException ex)
             {
                 MessageBox.Show(ex.Message, "정훈이 또 삐졌다.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            //AppendText(txtHistory, )
         }
+        
         private void button1_Click_1(object sender, EventArgs e)
         {
+            // Server Open button
             int port;
             if (!int.TryParse(txtPort.Text, out port))
             {
@@ -103,15 +102,14 @@ namespace Server
             }
             IPEndPoint serverEP = new IPEndPoint(thisAddress, port);
             mainSock.Bind(serverEP);
-            mainSock.Listen(10);
-
-            mainSock.BeginAccept(AcceptCallback, null);
+            mainSock.Listen(100);
+            mainSock.BeginAccept(AcceptCallback, null);            
         }
 
         private void SendButton_Click_1(object sender, EventArgs e)
         {
-            string message = string.Format("{0}+{1}+{2}+{3}+{4}", lotno.Text, worker.Text, modelname.Text, paste.Text, Speed.Text);
-            message.Split('+');
+            string message = string.Format("{0},{1},{2},{3},{4}", lotno.Text, worker.Text, modelname.Text, paste.Text, Speed.Text);
+            message.Split(',');
             message.Trim();
             if (!mainSock.IsBound)
             {
@@ -130,15 +128,15 @@ namespace Server
                     connectedClients.RemoveAt(i);
                 }
             }
+
             string data = string.Format("Lotno:{0}\rWorker:{1}\rModelName:{2}\rPaste:{3}\rSpeed:{4}\rDate:{5}\r", lotno.Text, worker.Text, modelname.Text, paste.Text, Speed.Text, Convert.ToString(DateTime.Now));
-            string DataPath = @"C:\Users\Unieye\Desktop\0909 Server\Serverlog\Serverlog.txt";
+            string DataPath = @"C:\Users\Unieye\Desktop\0909 Server\Serverlog\Serverlog.txt"; 
             if (!File.Exists(DataPath))
             {
-                using (FileStream fs = File.Create(DataPath, 2048))
-                {
+                using (FileStream fs = File.Create(DataPath))
+                {                  
                     byte[] inData = new UTF8Encoding(true).GetBytes(data);
-                    fs.Write(inData, 0, inData.Length);
-
+                    fs.Write(inData, 0, inData.Length);                   
                 }
             }
             using (StreamWriter sw = File.AppendText(DataPath))
@@ -146,6 +144,11 @@ namespace Server
                 sw.Write(data);
                 AppendText(txtHistory, data);
             }
+            lotno.Clear();
+            modelname.Clear();
+            worker.Clear();
+            paste.Clear();
+            Speed.Clear();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -162,7 +165,27 @@ namespace Server
             if (thisAddress == null)
                 thisAddress = IPAddress.Loopback;
             txtAddress.Text = thisAddress.ToString();
+        }        
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer1.Start();
+            Thread.Sleep(1000);
+
+            string message = "Server Closed";
+            byte [] closeMessage = Encoding.UTF8.GetBytes(message);
+            for (int i = connectedClients.Count - 1; i >= 0; i--)
+            {
+                Socket socket = connectedClients[i];
+                try { socket.Send(closeMessage); }
+                catch
+                {
+                    connectedClients.RemoveAt(i);
+                }
+            }
+            mainSock.Dispose();               
         }
+        #region Clients
         private void EDMS_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
@@ -172,21 +195,11 @@ namespace Server
 
         }
         private void ColorSensor_Click(object sender, EventArgs e)
-        {          
+        {
             Form2 form2 = new Form2();
             form2.Show();
             form2.ClientName.Text = "COLORSENSOR"; 
             AppendText(txtHistory, "COLORSENSOR>>");
-        }
-
-        private void Clearbutton_Click(object sender, EventArgs e)
-        {
-            lotno.Clear();
-            modelname.Clear();
-            worker.Clear();
-            paste.Clear();
-            Speed.Clear();
-            txtHistory.ClearUndo();
         }
 
         private void Pinhole_Click(object sender, EventArgs e)
@@ -204,22 +217,35 @@ namespace Server
             form2.ClientName.Text = "STOPIMAGE";
             AppendText(txtHistory, "STOPIMAGE>>");           
         }
+        #endregion 
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        #region logFile
+        private void btnLog_Click(object sender, EventArgs e)
         {
-            string message = "Having to my Happiness";
-            byte [] closeMessage = Encoding.UTF8.GetBytes(message);
-            for (int i = connectedClients.Count - 1; i >= 0; i--)
+            try
             {
-                Socket socket = connectedClients[i];
-                try { socket.Send(closeMessage); }
-                catch
-                {
-                    connectedClients.RemoveAt(i);
-                }
+                string logfile = @"C:\Users\Unieye\Desktop\0909 Server\Serverlog\Serverlog.txt";
+                Process.Start(logfile);               
             }
-            AppendText(txtHistory, message);
-            mainSock.Close(2000);
+            catch (Win32Exception ex)
+            {
+                MessageBox.Show(ex.Message, "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Log file Delete
+            string logfilepath = @"C:\Users\Unieye\Desktop\0909 Server\Serverlog\Serverlog.txt";
+            if (File.Exists(logfilepath))
+            {
+                if (MessageBox.Show("Delete?", "Delete to Logfile?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    File.Delete(logfilepath);
+                    MessageBox.Show("삭제 완료");                    
+                }                  
+            }
+        }
+        #endregion //logFile
     }
 }

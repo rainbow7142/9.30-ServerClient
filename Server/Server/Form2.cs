@@ -84,31 +84,43 @@ namespace Server
 
         void DataReceived(IAsyncResult ar)
         {
-            AsyncObject obj = (AsyncObject)ar.AsyncState;
-
-            int received = obj.WorkingSocket.EndReceive(ar);
-            if (received <= 0)
+            try
             {
-                obj.WorkingSocket.Close();
-                return;
+                AsyncObject obj = (AsyncObject)ar.AsyncState;
+
+                int received = obj.WorkingSocket.EndReceive(ar);
+                if (received <= 0)
+                {
+                    obj.WorkingSocket.Close();
+                    return;
+                }
+
+                string text = Encoding.UTF8.GetString(obj.Buffer);
+                string[] grd = text.Split(',');
+                string messageLotnumber = grd[0];
+                string messageWorker = grd[1];
+                string messageModelName = grd[2];
+                string messagePaste = grd[3];
+                string messageSpeed = grd[4];
+
+                AppendText(LotNo, messageLotnumber); //ctrl,string 
+                AppendText(Worker, messageWorker);
+                AppendText(ModelName, messageModelName);
+                AppendText(Paste, messagePaste);
+                AppendText(Speed, messageSpeed);
+
+                obj.ClearBuffer();
+                obj.WorkingSocket.BeginReceive(obj.Buffer, 0, 4096, 0, DataReceived, obj);
             }
-
-            string text = Encoding.UTF8.GetString(obj.Buffer);
-            string[] grd = text.Split('+');
-            string mlot = grd[0];
-            string mwork = grd[1];
-            string mmodel = grd[2];
-            string mpaste = grd[3];
-            string mspeed = grd[4];
-
-            AppendText(LotNo, mlot); //ctrl,string 
-            AppendText(Worker, mwork);
-            AppendText(ModelName, mmodel);
-            AppendText(Paste, mpaste);
-            AppendText(Speed, mspeed);
-
-            obj.ClearBuffer();
-            obj.WorkingSocket.BeginReceive(obj.Buffer, 0, 4096, 0, DataReceived, obj);
+            catch (ObjectDisposedException ex)
+            {
+                MessageBox.Show(ex.Message);
+                
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -117,20 +129,12 @@ namespace Server
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            try
-            {
-                mainSock.Dispose();
-                AppendText(txtHistory, "장마감");
-            }
-            catch (ObjectDisposedException ex)
-            {
-                MessageBox.Show(ex.Message, "Concentrations your mind", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
         }
     }
 }

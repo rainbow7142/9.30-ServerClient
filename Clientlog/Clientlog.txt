@@ -1,14 +1,9 @@
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:37:25LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:37:25
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:33
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:33
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:33
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:33
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:34
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:35
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:35
-LotNo:Worker:ModelName:Paste:Speed:Date: 2019-09-24 오후 5:38:35
+LotNo:Worker:ModelName:Paste:Speed:Date: 2019-10-07 오후 2:58:00LotNo:Worker:ModelName:Paste:Speed:Date: 2019-10-07 오후 2:58:00
+LotNo:Worker:ModelName:Paste:Speed:Date: 2019-10-07 오후 2:59:55
+LotNo:Worker:ModelName:Paste:Speed:Date: 2019-10-07 오후 2:59:57
+LotNo:
+3Worker:
+4ModelName:
+5Paste:
+6Speed:
+7Date: 2019-10-08 오후 5:15:56

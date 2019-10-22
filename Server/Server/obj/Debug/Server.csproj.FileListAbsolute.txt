@@ -9,6 +9,5 @@ C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.exe
 C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.pdb
 C:\Users\Unieye\Desktop\0909 Server\Server\Server\bin\Debug\SimpleTCP.dll
 C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.csproj.CopyComplete
-C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.csprojAssemblyReference.cache
 C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.Form2.resources
-C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.Form3.resources
+C:\Users\Unieye\Desktop\0909 Server\Server\Server\obj\Debug\Server.csprojAssemblyReference.cache
